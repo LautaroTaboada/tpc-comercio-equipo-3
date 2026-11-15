@@ -8,8 +8,8 @@ namespace dominio
 {
     public enum TipoUsuario
     {
-        ADMIN = 1,
-        NORMAL = 2,
+        ADMINISTRADOR = 1,
+        VENDEDOR = 2,
     }
     public class Usuario
     {
@@ -27,7 +27,7 @@ namespace dominio
         {
             NombreUsuario = user;
             Password = pass;
-            TipoUsuario = admin ? TipoUsuario.ADMIN : TipoUsuario.NORMAL;
+            TipoUsuario = admin ? TipoUsuario.ADMINISTRADOR : TipoUsuario.VENDEDOR;
         }
         public Usuario()
         {
@@ -35,3 +35,4 @@ namespace dominio
         }
     }
 }
+

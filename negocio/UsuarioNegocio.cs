@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using dominio;
-using negocio;
+
 
 namespace negocio
 {
-    class UsuarioNegocio
+    public class UsuarioNegocio
     {
         public bool loguear(Usuario usuario)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("FROM Usuario WHERE nombreUsuario = @nombreUsuario AND password = @password AND activo = 1");
+                datos.setearConsulta("SELECT idUsuario, nombre, apellido, activo, idPerfil FROM Usuario WHERE nombreUsuario = @nombreUsuario AND password = @password AND activo = 1");
                 datos.setearParametro("@nombreUsuario", usuario.NombreUsuario);
                 datos.setearParametro("@password", usuario.Password);
 
@@ -30,15 +30,15 @@ namespace negocio
 
 
                     int idPerfil = (int)datos.Lector["idPerfil"];
-                    usuario.TipoUsuario = idPerfil == 1 ? TipoUsuario.ADMIN : TipoUsuario.NORMAL;
+                    usuario.TipoUsuario = idPerfil == 1 ? TipoUsuario.ADMINISTRADOR : TipoUsuario.VENDEDOR;
 
                     return true;
                 }
                 return false;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                throw ex;
+                throw;
             }
             finally
             {
