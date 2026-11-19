@@ -11,7 +11,22 @@ namespace ComercioWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] != null)
+            {
+                menuConSesion.Visible = true;
+                menuSinSesion.Visible = false;
+            }
+            else
+            {
+                menuConSesion.Visible = false;
+                menuSinSesion.Visible = true;
+            }
+        }
 
+        protected void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("Login.aspx");
         }
     }
 }

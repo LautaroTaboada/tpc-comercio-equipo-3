@@ -5,24 +5,33 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 
-  <div class="row">
-      <div class="col-2"></div>
-      <div class="col">
-          <div class="mb-3">
-    <label for="txtEmail" class="form-label">Mail address</label> 
-     <asp:TextBox runat="server" cssClass="form-control" ID="txtEmail" />
-   
-  </div>
-  <div class="mb-3">
-    <label for ="password" class="form-label">Password</label>
-  
-      <asp:TextBox runat="server" cssClass="form-control"  id="txtPassword" type="password"/>
-  </div>
-  
-   <asp:button Text="Ingresar"  CssClass="btn btn-primary" ID="btnAceptar" OnClick="btnAceptar_Click" runat="server" />
+ <div class="row justify-content-center">
+    <div class="col-md-5">
 
+        <h2 class="mb-4">Iniciar sesión</h2>
 
-      </div>
-      <div class="col-2"></div>
-  </div>
+        <div class="mb-3">
+            <label class="form-label">Nombre de usuario</label>
+            <asp:TextBox runat="server" CssClass="form-control" ID="txtEmail" />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <asp:TextBox runat="server" CssClass="form-control" ID="txtPassword" TextMode="Password" />
+        </div>
+
+        <asp:Button
+            Text="Ingresar"
+            CssClass="btn btn-primary"
+            ID="btnAceptar"
+            OnClick="btnAceptar_Click"
+            runat="server" />
+
+        <p class="mt-3">
+            ¿No tenés cuenta?
+            <a href="Registro.aspx">Registrarse</a>
+        </p>
+
+    </div>
+</div>
 </asp:Content>

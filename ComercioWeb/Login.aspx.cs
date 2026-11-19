@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using dominio;
+using negocio;
 
 namespace boostrabdesdecero
 {
@@ -13,9 +15,33 @@ namespace boostrabdesdecero
         {
 
         }
+
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            string hola = txtEmail.Text;
+            Usuario usuarioIngresado = new Usuario();
+
+            usuarioIngresado.NombreUsuario = txtEmail.Text;
+            usuarioIngresado.Password = txtPassword.Text;
+
+            UsuarioNegocio negocio = new UsuarioNegocio();
+
+            if (negocio.loguear(usuarioIngresado))
+            {
+                Session["usuario"] = usuarioIngresado;
+
+                if (usuarioIngresado.TipoUsuario == TipoUsuario.ADMINISTRADOR)
+                {
+                    Response.Redirect("Inicio.aspx");
+                }
+                else
+                {
+                    Response.Redirect("Inicio.aspx");
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('Usuario o contraseña incorrectos');</script>");
+            }
         }
     }
 }
