@@ -38,5 +38,11 @@ namespace ComercioWeb
             dgvProductos.DataSource = Session["listaProductos"];
             dgvProductos.DataBind();
         }
+
+        protected void dgvProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = dgvProductos.SelectedDataKey.Value.ToString();
+            Response.Redirect("FormularioProducto.aspx?id=" + id);
+        }
     }
 }

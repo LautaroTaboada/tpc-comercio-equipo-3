@@ -8,7 +8,8 @@
         DataKeyNames="Id"
         AutoGenerateColumns="false"
         AllowPaging="true" PageSize="5"
-        OnPageIndexChanging="dgvProductos_PageIndexChanging">
+        OnPageIndexChanging="dgvProductos_PageIndexChanging"
+        OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged">
         <Columns>
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
             <asp:BoundField HeaderText="Marca" DataField="Marca" />
@@ -17,6 +18,8 @@
             <asp:BoundField HeaderText="Stock mínimo" DataField="StockMinimo" />
             <asp:BoundField HeaderText="Precio de venta" DataField="PrecioVenta"
                 DataFormatString="{0:C2}" HtmlEncode="false" />
+            <asp:BoundField HeaderText="Activo" DataField="Activo" />
+            <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍" />
         </Columns>
     </asp:GridView>
     <a href="FormularioProducto.aspx" class="btn btn-primary">Agregar</a>

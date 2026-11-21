@@ -52,5 +52,80 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
+    
+
+
+     public void agregar(Producto nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Insert into Producto (nombre, descripcion, stockMinimo, porcentajeGanancia, idMarca, idCategoria) values (@nombre, @descripcion, @stockMinimo, @ganancia, @idMarca, @idCategoria)");
+                datos.setearParametro("@nombre", nuevo.Nombre);
+                datos.setearParametro("@descripcion", nuevo.Descripcion);
+                datos.setearParametro("@stockMinimo", nuevo.StockMinimo);
+                datos.setearParametro("@ganancia", nuevo.PorcentajeGanancia);
+                datos.setearParametro("@idMarca", nuevo.Marca.Id);
+                datos.setearParametro("@idCategoria", nuevo.Categoria.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void modificar(Producto producto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Update Producto set nombre = @nombre, descripcion = @descripcion, stockMinimo = @stockMinimo, porcentajeGanancia = @ganancia, idMarca = @idMarca, idCategoria = @idCategoria Where idProducto = @id");
+                datos.setearParametro("@nombre", producto.Nombre);
+                datos.setearParametro("@descripcion", producto.Descripcion);
+                datos.setearParametro("@stockMinimo", producto.StockMinimo);
+                datos.setearParametro("@ganancia", producto.PorcentajeGanancia);
+                datos.setearParametro("@idMarca", producto.Marca.Id);
+                datos.setearParametro("@idCategoria", producto.Categoria.Id);
+                datos.setearParametro("@id", producto.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void eliminarLogico(int id, bool activo = false)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Update Producto set activo = @activo Where idProducto = @id");
+                datos.setearParametro("@id", id);
+                datos.setearParametro("@activo", activo);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        }
     }
-}
