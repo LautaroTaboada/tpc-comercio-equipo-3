@@ -19,4 +19,5 @@
                 DataFormatString="{0:C2}" HtmlEncode="false" />
         </Columns>
     </asp:GridView>
+    <a href="FormularioProducto.aspx" class="btn btn-primary">Agregar</a>
 </asp:Content>

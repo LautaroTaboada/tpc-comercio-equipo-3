@@ -1,5 +1,4 @@
-﻿
-<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="ComercioWeb.Site" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="ComercioWeb.Site" %>
 
 <!DOCTYPE html>
 <html>
@@ -30,6 +29,30 @@
 
                         <li class="nav-item">
                             <a class="nav-link" href="Productos.aspx">Productos</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="Clientes.aspx">Clientes</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="Proveedores.aspx">Proveedores</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="NuevaCompra.aspx">Compras</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="NuevaVenta.aspx">Ventas</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Administrar</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="Marcas.aspx">Marcas</a></li>
+                                <li><a class="dropdown-item" href="Categorias.aspx">Categorías</a></li>
+                            </ul>
                         </li>
 
                         <li class="nav-item">

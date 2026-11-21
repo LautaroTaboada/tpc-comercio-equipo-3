@@ -67,13 +67,49 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Categorias.aspx" />
+    <Content Include="Clientes.aspx" />
+    <Content Include="Factura.aspx" />
+    <Content Include="FormularioCliente.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Marcas.aspx" />
+    <Content Include="NuevaCompra.aspx" />
+    <Content Include="NuevaVenta.aspx" />
     <Content Include="Productos.aspx" />
+    <Content Include="Proveedores.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categorias.aspx.cs">
+      <DependentUpon>Categorias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Categorias.aspx.designer.cs">
+      <DependentUpon>Categorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clientes.aspx.cs">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clientes.aspx.designer.cs">
+      <DependentUpon>Clientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Factura.aspx.cs">
+      <DependentUpon>Factura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Factura.aspx.designer.cs">
+      <DependentUpon>Factura.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioCliente.aspx.cs">
+      <DependentUpon>FormularioCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioCliente.aspx.designer.cs">
+      <DependentUpon>FormularioCliente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -88,6 +124,27 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Marcas.aspx.cs">
+      <DependentUpon>Marcas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Marcas.aspx.designer.cs">
+      <DependentUpon>Marcas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevaCompra.aspx.cs">
+      <DependentUpon>NuevaCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevaCompra.aspx.designer.cs">
+      <DependentUpon>NuevaCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevaVenta.aspx.cs">
+      <DependentUpon>NuevaVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevaVenta.aspx.designer.cs">
+      <DependentUpon>NuevaVenta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -96,6 +153,13 @@
       <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedores.aspx.cs">
+      <DependentUpon>Proveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Proveedores.aspx.designer.cs">
+      <DependentUpon>Proveedores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
