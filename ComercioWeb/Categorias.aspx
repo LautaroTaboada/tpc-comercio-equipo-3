@@ -9,19 +9,20 @@
                 <label class="form-label">Nombre</label>
                 <asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" />
             </div>
-            <asp:Button Text="Agregar" runat="server" ID="btnAgregar" CssClass="btn btn-primary" />
+           <asp:Button Text="Agregar" runat="server" ID="btnAgregar" CssClass="btn btn-primary" OnClick="btnAgregar_Click" />
+           <asp:Label ID="lblMensaje" runat="server" />
         </div>
         <div class="col-md-8">
-            <table class="table">
-                <thead>
-                    <tr><th>Nombre</th><th>Estado</th><th>Acción</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Almacén</td><td>Activa</td><td><a href="#">✍</a></td></tr>
-                    <tr><td>Limpieza</td><td>Activa</td><td><a href="#">✍</a></td></tr>
-                    <tr><td>Bebidas</td><td>Activa</td><td><a href="#">✍</a></td></tr>
-                </tbody>
-            </table>
-        </div>
+            <asp:GridView ID="dgvCategorias" runat="server"
+           DataKeyNames="Id"
+           CssClass="table" AutoGenerateColumns="false"
+          OnSelectedIndexChanged="dgvCategorias_SelectedIndexChanged">
+              <Columns>
+            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+            <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
+            <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍" />
+        </Columns>
+    </asp:GridView>
+</div>
     </div>
 </asp:Content>

@@ -9,35 +9,115 @@ namespace negocio
 {
         public class CategoriaNegocio
         {
-            public List<Categoria> listar()
+        public List<Categoria> listar(string id = "")
+        {
+            List<Categoria> lista = new List<Categoria>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
             {
-                List<Categoria> lista = new List<Categoria>();
-                AccesoDatos datos = new AccesoDatos();
+                string consulta = "Select idCategoria, nombre, activo From Categoria Where activo = 1";
 
-                try
+                if (id != "")
                 {
-                    datos.setearConsulta("Select idCategoria, nombre, activo From Categoria Where activo = 1 Order By nombre");
-                    datos.ejecutarLectura();
+                    consulta += " AND idCategoria = @id";
+                }
 
-                    while (datos.Lector.Read())
-                    {
-                        Categoria aux = new Categoria();
-                        aux.Id = (int)datos.Lector["idCategoria"];
-                        aux.Nombre = (string)datos.Lector["nombre"];
-                        aux.Activo = (bool)datos.Lector["activo"];
-                        lista.Add(aux);
-                    }
-                    return lista;
-                }
-                catch (Exception ex)
+                consulta += " Order By nombre";
+
+                datos.setearConsulta(consulta);
+
+                if (id != "")
                 {
-                    throw ex;
+                    datos.setearParametro("@id", id);
                 }
-                finally
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
                 {
-                    datos.cerrarConexion();
+                    Categoria aux = new Categoria();
+                    aux.Id = (int)datos.Lector["idCategoria"];
+                    aux.Nombre = (string)datos.Lector["nombre"];
+                    aux.Activo = (bool)datos.Lector["activo"];
+                    lista.Add(aux);
                 }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
+        public bool existe(string nombre)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT idCategoria FROM Categoria WHERE nombre = @nombre");
+                datos.setearParametro("@nombre", nombre);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void agregar(Categoria nueva)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("INSERT INTO Categoria (nombre, activo) VALUES (@nombre, 1)");
+                datos.setearParametro("@nombre", nueva.Nombre);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void modificar(Categoria categoria)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("UPDATE Categoria SET nombre = @nombre WHERE idCategoria = @id");
+                datos.setearParametro("@nombre", categoria.Nombre);
+                datos.setearParametro("@id", categoria.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+    }
 }
 
