@@ -54,5 +54,16 @@ namespace ComercioWeb
             string id = dgvCategorias.SelectedDataKey.Value.ToString();
             Response.Redirect("FormularioCategoria.aspx?id=" + id);
         }
+        protected void dgvCategorias_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int id = Convert.ToInt32(dgvCategorias.DataKeys[e.RowIndex].Value);
+
+            CategoriaNegocio negocio = new CategoriaNegocio();
+
+            negocio.eliminar(id);
+
+            dgvCategorias.DataSource = negocio.listar();
+            dgvCategorias.DataBind();
+        }
     }
 }

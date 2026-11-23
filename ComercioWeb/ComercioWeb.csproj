@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Categorias.aspx" />
+    <Content Include="CategoriasInactivas.aspx" />
     <Content Include="Clientes.aspx" />
     <Content Include="Factura.aspx" />
     <Content Include="FormularioCategoria.aspx" />
@@ -90,6 +91,13 @@
     </Compile>
     <Compile Include="Categorias.aspx.designer.cs">
       <DependentUpon>Categorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriasInactivas.aspx.cs">
+      <DependentUpon>CategoriasInactivas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriasInactivas.aspx.designer.cs">
+      <DependentUpon>CategoriasInactivas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clientes.aspx.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
@@ -176,6 +184,7 @@
     <Compile Include="Proveedores.aspx.designer.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProveedorNegocio.cs" />
     <Compile Include="Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

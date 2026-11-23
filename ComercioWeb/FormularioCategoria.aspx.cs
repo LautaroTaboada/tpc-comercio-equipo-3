@@ -32,7 +32,15 @@ namespace ComercioWeb
         }
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            Categoria nueva = new Categoria();
+            CategoriaNegocio negocio = new CategoriaNegocio();
 
+            nueva.Id = int.Parse(txtId.Text);
+            nueva.Nombre = txtNombre.Text.Trim();
+
+            negocio.modificar(nueva);
+
+            Response.Redirect("Categorias.aspx");
         }
     }
 }

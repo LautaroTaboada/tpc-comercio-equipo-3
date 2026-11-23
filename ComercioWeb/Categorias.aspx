@@ -13,16 +13,31 @@
            <asp:Label ID="lblMensaje" runat="server" />
         </div>
         <div class="col-md-8">
-            <asp:GridView ID="dgvCategorias" runat="server"
-           DataKeyNames="Id"
-           CssClass="table" AutoGenerateColumns="false"
-          OnSelectedIndexChanged="dgvCategorias_SelectedIndexChanged">
-              <Columns>
-            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-            <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
-            <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍" />
-        </Columns>
-    </asp:GridView>
+     <asp:GridView ID="dgvCategorias" runat="server"
+    DataKeyNames="Id"
+    CssClass="table"
+    AutoGenerateColumns="false"
+    OnSelectedIndexChanged="dgvCategorias_SelectedIndexChanged"
+    OnRowDeleting="dgvCategorias_RowDeleting">
+
+    <Columns>
+        <asp:BoundField
+            HeaderText="Nombre"
+            DataField="Nombre" />
+
+        <asp:CheckBoxField
+            HeaderText="Activo"
+            DataField="Activo" />
+
+        <asp:CommandField
+            HeaderText="Acción"
+            ShowSelectButton="true"
+            SelectText="✍"
+            ShowDeleteButton="true"
+            DeleteText="Desactivar" />
+    </Columns>
+
+</asp:GridView>
 </div>
     </div>
 </asp:Content>

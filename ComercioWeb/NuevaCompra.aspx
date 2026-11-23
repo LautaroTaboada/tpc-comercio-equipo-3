@@ -5,10 +5,8 @@
     <h1 class="mb-4">Nueva compra</h1>
     <div class="mb-3 col-md-4">
         <label class="form-label">Proveedor</label>
-        <asp:DropDownList runat="server" ID="ddlProveedor" CssClass="form-select">
-            <asp:ListItem Text="Distribuidora Norte S.A." />
-            <asp:ListItem Text="Mayorista Sur S.R.L." />
-        </asp:DropDownList>
+       <asp:DropDownList runat="server" ID="ddlProveedor" CssClass="form-select">
+</asp:DropDownList>
     </div>
     <div class="row align-items-end mb-3">
         <div class="col-md-5">
