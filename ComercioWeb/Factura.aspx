@@ -8,23 +8,25 @@
                 <h3>Mi Comercio</h3>
             </div>
             <div class="text-end">
-                <h3>FACTURA N° 0001-00000001</h3>
-                <span>Fecha: 21/11/2026</span>
+                <h3>FACTURA N° <asp:Label ID="lblNumero" runat="server" /></h3>
+                <span>Fecha: <asp:Label ID="lblFecha" runat="server" /></span>
             </div>
         </div>
-        <p><strong>Cliente:</strong> Gómez, María &nbsp; <strong>Documento:</strong> 30111222</p>
-        <table class="table">
-            <thead>
-                <tr><th>Producto</th><th>Cant.</th><th>Precio unitario</th><th>Subtotal</th></tr>
-            </thead>
-            <tbody>
-                <%--<tr><td>Gaseosa cola 2,25 l</td><td>3</td><td>$ 1.800,00</td><td>$ 5.400,00</td></tr>--%>
-                <tr><td>Fideos tirabuzón 500 g</td><td>2</td><td>$ 1.170,00</td><td>$ 2.340,00</td></tr>
-            </tbody>
-            <tfoot>
-                <tr><th colspan="3" class="text-end">TOTAL</th><th>$ 7.740,00</th></tr>
-            </tfoot>
-        </table>
+        <p>
+            <strong>Cliente:</strong> <asp:Label ID="lblCliente" runat="server" /> &nbsp;
+            <strong>Documento:</strong> <asp:Label ID="lblDocumento" runat="server" />
+        </p>
+        <asp:GridView ID="dgvDetalle" runat="server" CssClass="table" AutoGenerateColumns="false" GridLines="None">
+            <Columns>
+                <asp:TemplateField HeaderText="Producto">
+                    <ItemTemplate><%# Eval("Producto.Nombre") %></ItemTemplate>
+                </asp:TemplateField>
+                <asp:BoundField HeaderText="Cant." DataField="Cantidad" />
+                <asp:BoundField HeaderText="Precio unitario" DataField="PrecioUnitario" DataFormatString="{0:C2}" />
+                <asp:BoundField HeaderText="Subtotal" DataField="Subtotal" DataFormatString="{0:C2}" />
+            </Columns>
+        </asp:GridView>
+        <h4 class="text-end">TOTAL: <asp:Label ID="lblTotal" runat="server" /></h4>
     </div>
     <div class="mt-3">
         <input type="button" value="Imprimir" class="btn btn-primary" onclick="window.print()" />

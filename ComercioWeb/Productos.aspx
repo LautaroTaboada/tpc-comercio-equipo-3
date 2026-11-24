@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Productos.aspx.cs" Inherits="ComercioWeb.Productos" %>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2 class="mb-3">Productos</h2>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Productos</h2>
+        <a href="ProductosInactivos.aspx" class="btn btn-outline-secondary">Ver inactivos</a>
+    </div>
 
     <asp:GridView ID="dgvProductos" runat="server"
         CssClass="table table-striped"
@@ -9,7 +11,8 @@
         AutoGenerateColumns="false"
         AllowPaging="true" PageSize="5"
         OnPageIndexChanging="dgvProductos_PageIndexChanging"
-        OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged">
+        OnSelectedIndexChanged="dgvProductos_SelectedIndexChanged"
+        OnRowDeleting="dgvProductos_RowDeleting">
         <Columns>
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
             <asp:BoundField HeaderText="Marca" DataField="Marca" />
@@ -18,8 +21,12 @@
             <asp:BoundField HeaderText="Stock mínimo" DataField="StockMinimo" />
             <asp:BoundField HeaderText="Precio de venta" DataField="PrecioVenta"
                 DataFormatString="{0:C2}" HtmlEncode="false" />
-            <asp:BoundField HeaderText="Activo" DataField="Activo" />
-            <asp:CommandField HeaderText="Acción" ShowSelectButton="true" SelectText="✍" />
+            <asp:TemplateField HeaderText="Acción" HeaderStyle-CssClass="text-end" ItemStyle-CssClass="text-end text-nowrap">
+                <ItemTemplate>
+                    <asp:LinkButton runat="server" CommandName="Select" Text="✍" CssClass="btn btn-sm btn-outline-secondary" />
+                    <asp:LinkButton runat="server" CommandName="Delete" Text="Desactivar" CssClass="btn btn-sm btn-outline-danger ms-1" />
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
     </asp:GridView>
     <a href="FormularioProducto.aspx" class="btn btn-primary">Agregar</a>

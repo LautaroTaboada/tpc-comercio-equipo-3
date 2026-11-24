@@ -80,6 +80,7 @@
     <Content Include="NuevaCompra.aspx" />
     <Content Include="NuevaVenta.aspx" />
     <Content Include="Productos.aspx" />
+    <Content Include="ProductosInactivos.aspx" />
     <Content Include="Proveedores.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="Web.config" />
@@ -176,6 +177,13 @@
     <Compile Include="Productos.aspx.designer.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProductosInactivos.aspx.cs">
+      <DependentUpon>ProductosInactivos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductosInactivos.aspx.designer.cs">
+      <DependentUpon>ProductosInactivos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedores.aspx.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
@@ -184,7 +192,6 @@
     <Compile Include="Proveedores.aspx.designer.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ProveedorNegocio.cs" />
     <Compile Include="Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

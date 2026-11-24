@@ -272,3 +272,58 @@ BEGIN
                  ORDER BY co.fecha DESC, dc.idDetalleCompra DESC) ult
     WHERE p.activo = 1
 END
+GO
+
+
+ALTER PROCEDURE storedListarProductos
+AS
+BEGIN
+    SELECT p.idProducto, p.nombre, p.descripcion, p.stockActual, p.stockMinimo,
+           p.porcentajeGanancia, p.activo,
+           m.idMarca, m.nombre AS marca,
+           c.idCategoria, c.nombre AS categoria,
+           ult.precioCompra
+    FROM Producto p
+    INNER JOIN Marca m ON m.idMarca = p.idMarca
+    INNER JOIN Categoria c ON c.idCategoria = p.idCategoria
+    OUTER APPLY (SELECT TOP 1 dc.precioCompra
+                 FROM DetalleCompra dc
+                 INNER JOIN Compra co ON co.idCompra = dc.idCompra
+                 WHERE dc.idProducto = p.idProducto
+                 ORDER BY co.fecha DESC, dc.idDetalleCompra DESC) ult
+    ORDER BY p.nombre
+END
+GO
+
+use comercio_db
+CREATE TABLE NumeroFactura (
+    puntoVenta INT NOT NULL,
+    ultimoNumero INT NOT NULL CONSTRAINT DF_NumeroFactura_ultimo DEFAULT 0,
+    CONSTRAINT PK_NumeroFactura PRIMARY KEY (puntoVenta)
+);
+INSERT INTO NumeroFactura (puntoVenta, ultimoNumero) VALUES (1, 0);
+GO
+
+
+CREATE PROCEDURE storedAgregarVenta
+    @idCliente INT,
+    @idUsuario INT,
+    @total DECIMAL(12,2)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    BEGIN TRAN;
+
+    UPDATE NumeroFactura SET ultimoNumero = ultimoNumero + 1 WHERE puntoVenta = 1;
+
+    DECLARE @numero INT = (SELECT ultimoNumero FROM NumeroFactura WHERE puntoVenta = 1);
+    DECLARE @factura NVARCHAR(20) = '0001-' + RIGHT('00000000' + CAST(@numero AS NVARCHAR(8)), 8);
+
+    INSERT INTO Venta (numeroFactura, total, idCliente, idUsuario)
+    VALUES (@factura, @total, @idCliente, @idUsuario);
+
+    COMMIT TRAN;
+
+    SELECT SCOPE_IDENTITY();
+END
+GO

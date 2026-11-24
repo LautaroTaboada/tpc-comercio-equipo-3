@@ -3,18 +3,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1 class="mb-4">Nueva compra</h1>
+
+    <asp:Label ID="lblMensaje" runat="server" CssClass="alert alert-danger d-block" Visible="false" />
+
     <div class="mb-3 col-md-4">
         <label class="form-label">Proveedor</label>
-       <asp:DropDownList runat="server" ID="ddlProveedor" CssClass="form-select">
-</asp:DropDownList>
+        <asp:DropDownList runat="server" ID="ddlProveedor" CssClass="form-select" />
     </div>
+
     <div class="row align-items-end mb-3">
         <div class="col-md-5">
             <label class="form-label">Producto</label>
-            <asp:DropDownList runat="server" ID="ddlProducto" CssClass="form-select">
-                <asp:ListItem Text="Yerba mate 1 kg" />
-                <asp:ListItem Text="Aceite de girasol 900 ml" />
-            </asp:DropDownList>
+            <asp:DropDownList runat="server" ID="ddlProducto" CssClass="form-select" />
         </div>
         <div class="col-md-2">
             <label class="form-label">Cantidad</label>
@@ -22,24 +22,32 @@
         </div>
         <div class="col-md-3">
             <label class="form-label">Precio de compra</label>
-            <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" TextMode="Number" />
+            <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" TextMode="Number" step="0.01" />
         </div>
         <div class="col-md-2">
-            <asp:Button Text="Agregar línea" runat="server" ID="btnAgregarLinea" CssClass="btn btn-success" />
+            <asp:Button Text="Agregar línea" runat="server" ID="btnAgregarLinea" CssClass="btn btn-success" OnClick="btnAgregarLinea_Click" />
         </div>
     </div>
-    <table class="table">
-        <thead>
-            <tr><th>Producto</th><th>Cantidad</th><th>Precio de compra</th><th>Subtotal</th><th></th></tr>
-        </thead>
-        <tbody>
-            <tr><td>Yerba mate 1 kg</td><td>20</td><td>$ 3.200,00</td><td>$ 64.000,00</td><td><a href="#">Quitar</a></td></tr>
-            <tr><td>Aceite de girasol 900 ml</td><td>12</td><td>$ 1.800,00</td><td>$ 21.600,00</td><td><a href="#">Quitar</a></td></tr>
-        </tbody>
-        <tfoot>
-            <tr><th colspan="3" class="text-end">Total</th><th>$ 85.600,00</th><th></th></tr>
-        </tfoot>
-    </table>
-    <asp:Button Text="Confirmar compra" runat="server" ID="btnConfirmar" CssClass="btn btn-primary" />
+
+    <asp:GridView ID="dgvLineas" runat="server" CssClass="table" AutoGenerateColumns="false"
+        GridLines="None" OnRowDeleting="dgvLineas_RowDeleting">
+        <Columns>
+            <asp:TemplateField HeaderText="Producto">
+                <ItemTemplate><%# Eval("Producto.Nombre") %></ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
+            <asp:BoundField HeaderText="Precio de compra" DataField="PrecioCompra" DataFormatString="{0:C2}" />
+            <asp:BoundField HeaderText="Subtotal" DataField="Subtotal" DataFormatString="{0:C2}" />
+            <asp:TemplateField HeaderText="Acción" HeaderStyle-CssClass="text-end" ItemStyle-CssClass="text-end text-nowrap">
+                <ItemTemplate>
+                    <asp:LinkButton runat="server" CommandName="Delete" Text="Quitar" CssClass="btn btn-sm btn-outline-danger" />
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
+
+    <h5 class="text-end">Total: <asp:Label ID="lblTotal" runat="server" Text="$ 0,00" /></h5>
+
+    <asp:Button Text="Confirmar compra" runat="server" ID="btnConfirmar" CssClass="btn btn-primary" OnClick="btnConfirmar_Click" />
     <a href="Inicio.aspx" class="btn btn-link">Cancelar</a>
 </asp:Content>

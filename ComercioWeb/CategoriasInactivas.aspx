@@ -23,10 +23,11 @@
         HeaderText="Activo"
         DataField="Activo" />
 
-    <asp:CommandField
-        HeaderText="Acción"
-        ShowSelectButton="true"
-        SelectText="Reactivar" />
+    <asp:TemplateField HeaderText="Acción" HeaderStyle-CssClass="text-end" ItemStyle-CssClass="text-end text-nowrap">
+        <ItemTemplate>
+            <asp:LinkButton runat="server" CommandName="Select" Text="Reactivar" CssClass="btn btn-sm btn-outline-success" />
+        </ItemTemplate>
+    </asp:TemplateField>
 </Columns>
 
 </asp:GridView>
