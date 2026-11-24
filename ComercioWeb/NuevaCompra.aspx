@@ -18,11 +18,11 @@
         </div>
         <div class="col-md-2">
             <label class="form-label">Cantidad</label>
-            <asp:TextBox runat="server" ID="txtCantidad" CssClass="form-control" TextMode="Number" />
+            <asp:TextBox runat="server" ID="txtCantidad" CssClass="form-control" TextMode="Number" min="1" />
         </div>
         <div class="col-md-3">
             <label class="form-label">Precio de compra</label>
-            <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" TextMode="Number" step="0.01" />
+            <asp:TextBox runat="server" ID="txtPrecio" CssClass="form-control" TextMode="Number" step="0.01" min="0.01" />
         </div>
         <div class="col-md-2">
             <asp:Button Text="Agregar línea" runat="server" ID="btnAgregarLinea" CssClass="btn btn-success" OnClick="btnAgregarLinea_Click" />
