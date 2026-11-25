@@ -31,6 +31,9 @@
             ¿No tenés cuenta?
             <a href="Registro.aspx">Registrarse</a>
         </p>
+        <p class="mt-2">
+    <a href="RecuperarPassword.aspx">¿Olvidaste tu contraseña?</a>
+</p>
 
     </div>
 </div>

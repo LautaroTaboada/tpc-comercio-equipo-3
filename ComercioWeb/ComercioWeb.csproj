@@ -84,6 +84,7 @@
     <Content Include="Productos.aspx" />
     <Content Include="ProductosInactivos.aspx" />
     <Content Include="Proveedores.aspx" />
+    <Content Include="RecuperarPassword.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -207,6 +208,13 @@
     </Compile>
     <Compile Include="Proveedores.aspx.designer.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RecuperarPassword.aspx.cs">
+      <DependentUpon>RecuperarPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RecuperarPassword.aspx.designer.cs">
+      <DependentUpon>RecuperarPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
