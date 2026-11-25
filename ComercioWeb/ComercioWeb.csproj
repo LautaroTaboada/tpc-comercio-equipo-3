@@ -73,10 +73,12 @@
     <Content Include="Factura.aspx" />
     <Content Include="FormularioCategoria.aspx" />
     <Content Include="FormularioCliente.aspx" />
+    <Content Include="FormularioMarca.aspx" />
     <Content Include="FormularioProducto.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Marcas.aspx" />
+    <Content Include="MarcasInactivas.aspx" />
     <Content Include="NuevaCompra.aspx" />
     <Content Include="NuevaVenta.aspx" />
     <Content Include="Productos.aspx" />
@@ -128,6 +130,13 @@
     <Compile Include="FormularioCliente.aspx.designer.cs">
       <DependentUpon>FormularioCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FormularioMarca.aspx.cs">
+      <DependentUpon>FormularioMarca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioMarca.aspx.designer.cs">
+      <DependentUpon>FormularioMarca.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FormularioProducto.aspx.cs">
       <DependentUpon>FormularioProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -155,6 +164,13 @@
     </Compile>
     <Compile Include="Marcas.aspx.designer.cs">
       <DependentUpon>Marcas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MarcasInactivas.aspx.cs">
+      <DependentUpon>MarcasInactivas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MarcasInactivas.aspx.designer.cs">
+      <DependentUpon>MarcasInactivas.aspx</DependentUpon>
     </Compile>
     <Compile Include="NuevaCompra.aspx.cs">
       <DependentUpon>NuevaCompra.aspx</DependentUpon>
