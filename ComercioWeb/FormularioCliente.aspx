@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormularioCliente.aspx.cs" Inherits="ComercioWeb.FormularioCliente" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -30,9 +31,12 @@
                 <asp:TextBox runat="server" ID="txtTelefono" CssClass="form-control" />
             </div>
             <div class="mb-3">
-                <asp:Button Text="Aceptar" runat="server" ID="btnAceptar" CssClass="btn btn-primary" />
+                <asp:Label runat="server" ID="lblError" CssClass="text-danger" Visible="false" />
+            </div>
+            <div class="mb-3">
+                <asp:Button Text="Aceptar" runat="server" ID="btnAceptar" CssClass="btn btn-primary" OnClick="btnAceptar_Click" />
                 <a href="Clientes.aspx" class="btn btn-link">Cancelar</a>
-                <asp:Button Text="Inactivar" runat="server" ID="btnInactivar" CssClass="btn btn-outline-danger float-end" />
+                <asp:Button Text="Inactivar" runat="server" ID="btnInactivar" CssClass="btn btn-outline-danger float-end" OnClick="btnInactivar_Click" />
             </div>
         </div>
     </div>

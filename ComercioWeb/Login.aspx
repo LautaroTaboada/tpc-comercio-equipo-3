@@ -19,7 +19,7 @@
             <label class="form-label">Contraseña</label>
             <asp:TextBox runat="server" CssClass="form-control" ID="txtPassword" TextMode="Password" />
         </div>
-
+            
         <asp:Button
             Text="Ingresar"
             CssClass="btn btn-primary"

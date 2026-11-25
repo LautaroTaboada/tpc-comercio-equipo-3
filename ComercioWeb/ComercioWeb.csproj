@@ -70,6 +70,7 @@
     <Content Include="Categorias.aspx" />
     <Content Include="CategoriasInactivas.aspx" />
     <Content Include="Clientes.aspx" />
+    <Content Include="ClientesInactivos.aspx" />
     <Content Include="Factura.aspx" />
     <Content Include="FormularioCategoria.aspx" />
     <Content Include="FormularioCliente.aspx" />
@@ -109,6 +110,13 @@
     </Compile>
     <Compile Include="Clientes.aspx.designer.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientesInactivos.aspx.cs">
+      <DependentUpon>ClientesInactivos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientesInactivos.aspx.designer.cs">
+      <DependentUpon>ClientesInactivos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Factura.aspx.cs">
       <DependentUpon>Factura.aspx</DependentUpon>

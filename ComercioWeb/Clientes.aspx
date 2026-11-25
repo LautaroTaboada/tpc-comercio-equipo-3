@@ -4,20 +4,32 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>Clientes</h1>
-        <a href="FormularioCliente.aspx" class="btn btn-primary">Agregar</a>
+        <div>
+            <a href="ClientesInactivos.aspx" class="btn btn-outline-secondary">Ver inactivos</a>
+            <a href="FormularioCliente.aspx" class="btn btn-primary">Agregar</a>
+        </div>
     </div>
     <div class="mb-3">
-        <label class="form-label">Filtrar</label>
-        <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control" />
+        <label class="form-label">Filtrar por apellido, nombre o documento</label>
+        <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" />
     </div>
-    <table class="table">
-        <thead>
-            <tr><th>Apellido y nombre</th><th>Documento</th><th>Email</th><th>Teléfono</th><th>Acción</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>Gómez, María</td><td>30111222</td><td>maria.gomez@example.com</td><td>11-4444-0001</td><td><a href="FormularioCliente.aspx">✍</a></td></tr>
-            <tr><td>Pérez, Carlos</td><td>28333444</td><td>carlos.perez@example.com</td><td>11-4444-0002</td><td><a href="FormularioCliente.aspx">✍</a></td></tr>
-            <tr><td>Rodríguez, Ana</td><td>35555666</td><td>ana.rodriguez@example.com</td><td>11-4444-0003</td><td><a href="FormularioCliente.aspx">✍</a></td></tr>
-        </tbody>
-    </table>
+    <asp:GridView ID="gvClientes" runat="server"
+        DataKeyNames="Id"
+        CssClass="table"
+        AutoGenerateColumns="false"
+        OnSelectedIndexChanged="gvClientes_SelectedIndexChanged"
+        OnRowDeleting="gvClientes_RowDeleting">
+        <Columns>
+            <asp:BoundField HeaderText="Apellido y nombre" DataField="NombreCompleto" />
+            <asp:BoundField HeaderText="Documento" DataField="Documento" />
+            <asp:BoundField HeaderText="Email" DataField="Email" />
+            <asp:BoundField HeaderText="Teléfono" DataField="Telefono" />
+            <asp:TemplateField HeaderText="Acción" HeaderStyle-CssClass="text-end" ItemStyle-CssClass="text-end text-nowrap">
+                <ItemTemplate>
+                    <asp:LinkButton runat="server" CommandName="Select" Text="✍" CssClass="btn btn-sm btn-outline-secondary" />
+                    <asp:LinkButton runat="server" CommandName="Delete" Text="Desactivar" CssClass="btn btn-sm btn-outline-danger ms-1" />
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
 </asp:Content>
