@@ -27,33 +27,41 @@
                             <a class="nav-link" href="Inicio.aspx">Inicio</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="Productos.aspx">Productos</a>
-                        </li>
+                        <asp:PlaceHolder ID="phProductos" runat="server">
+                            <li class="nav-item">
+                                <a class="nav-link" href="Productos.aspx">Productos</a>
+                            </li>
+                        </asp:PlaceHolder>
 
                         <li class="nav-item">
                             <a class="nav-link" href="Clientes.aspx">Clientes</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="Proveedores.aspx">Proveedores</a>
-                        </li>
+                        <asp:PlaceHolder ID="phProveedores" runat="server">
+                            <li class="nav-item">
+                                <a class="nav-link" href="Proveedores.aspx">Proveedores</a>
+                            </li>
+                        </asp:PlaceHolder>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="NuevaCompra.aspx">Compras</a>
-                        </li>
+                        <asp:PlaceHolder ID="phCompras" runat="server">
+                            <li class="nav-item">
+                                <a class="nav-link" href="NuevaCompra.aspx">Compras</a>
+                            </li>
+                        </asp:PlaceHolder>
 
                         <li class="nav-item">
                             <a class="nav-link" href="NuevaVenta.aspx">Ventas</a>
                         </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Administrar</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="Marcas.aspx">Marcas</a></li>
-                                <li><a class="dropdown-item" href="Categorias.aspx">Categorías</a></li>
-                            </ul>
-                        </li>
+                        <asp:PlaceHolder ID="phAdministrar" runat="server">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Administrar</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Marcas.aspx">Marcas</a></li>
+                                    <li><a class="dropdown-item" href="Categorias.aspx">Categorías</a></li>
+                                </ul>
+                            </li>
+                        </asp:PlaceHolder>
 
                         <li class="nav-item">
                             <asp:LinkButton ID="btnCerrarSesion" runat="server"

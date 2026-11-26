@@ -40,6 +40,10 @@ namespace ComercioWeb
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            Page.Validate();
+            if (!Page.IsValid)
+                return;
+
             ClienteNegocio negocio = new ClienteNegocio();
             Cliente cliente = new Cliente();
 
