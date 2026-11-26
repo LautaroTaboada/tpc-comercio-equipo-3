@@ -4,15 +4,32 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1>Proveedores</h1>
-        <a href="FormularioProveedor.aspx" class="btn btn-primary">Agregar</a>
+        <div>
+            <a href="ProveedoresInactivos.aspx" class="btn btn-outline-secondary">Ver inactivos</a>
+            <a href="FormularioProveedor.aspx" class="btn btn-primary">Agregar</a>
+        </div>
     </div>
-    <table class="table">
-        <thead>
-            <tr><th>Razón social</th><th>CUIT</th><th>Email</th><th>Teléfono</th><th>Acción</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>Distribuidora Norte S.A.</td><td>30-11111111-1</td><td>ventas@distnorte.example</td><td>11-5555-0001</td><td><a href="FormularioProveedor.aspx">✍</a></td></tr>
-            <tr><td>Mayorista Sur S.R.L.</td><td>30-22222222-2</td><td>pedidos@mayosur.example</td><td>11-5555-0002</td><td><a href="FormularioProveedor.aspx">✍</a></td></tr>
-        </tbody>
-    </table>
+    <div class="mb-3">
+        <label class="form-label">Filtrar por razón social o CUIT</label>
+        <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" />
+    </div>
+    <asp:GridView ID="gvProveedores" runat="server"
+        DataKeyNames="Id"
+        CssClass="table"
+        AutoGenerateColumns="false"
+        OnSelectedIndexChanged="gvProveedores_SelectedIndexChanged"
+        OnRowDeleting="gvProveedores_RowDeleting">
+        <Columns>
+            <asp:BoundField HeaderText="Razón social" DataField="RazonSocial" />
+            <asp:BoundField HeaderText="CUIT" DataField="Cuit" />
+            <asp:BoundField HeaderText="Email" DataField="Email" />
+            <asp:BoundField HeaderText="Teléfono" DataField="Telefono" />
+            <asp:TemplateField HeaderText="Acción" HeaderStyle-CssClass="text-end" ItemStyle-CssClass="text-end text-nowrap">
+                <ItemTemplate>
+                    <asp:LinkButton runat="server" CommandName="Select" Text="✍" CssClass="btn btn-sm btn-outline-secondary" />
+                    <asp:LinkButton runat="server" CommandName="Delete" Text="Desactivar" CssClass="btn btn-sm btn-outline-danger ms-1" />
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
 </asp:Content>

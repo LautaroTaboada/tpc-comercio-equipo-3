@@ -76,6 +76,7 @@
     <Content Include="FormularioCliente.aspx" />
     <Content Include="FormularioMarca.aspx" />
     <Content Include="FormularioProducto.aspx" />
+    <Content Include="FormularioProveedor.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Marcas.aspx" />
@@ -85,6 +86,7 @@
     <Content Include="Productos.aspx" />
     <Content Include="ProductosInactivos.aspx" />
     <Content Include="Proveedores.aspx" />
+    <Content Include="ProveedoresInactivos.aspx" />
     <Content Include="RecuperarPassword.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="Web.config" />
@@ -153,6 +155,13 @@
     <Compile Include="FormularioProducto.aspx.designer.cs">
       <DependentUpon>FormularioProducto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FormularioProveedor.aspx.cs">
+      <DependentUpon>FormularioProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioProveedor.aspx.designer.cs">
+      <DependentUpon>FormularioProveedor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -216,6 +225,13 @@
     </Compile>
     <Compile Include="Proveedores.aspx.designer.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProveedoresInactivos.aspx.cs">
+      <DependentUpon>ProveedoresInactivos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProveedoresInactivos.aspx.designer.cs">
+      <DependentUpon>ProveedoresInactivos.aspx</DependentUpon>
     </Compile>
     <Compile Include="RecuperarPassword.aspx.cs">
       <DependentUpon>RecuperarPassword.aspx</DependentUpon>
