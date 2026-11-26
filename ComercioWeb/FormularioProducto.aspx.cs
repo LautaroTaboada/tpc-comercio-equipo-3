@@ -80,6 +80,9 @@ namespace ComercioWeb
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
                 List<int> idsProveedores = new List<int>();
                 foreach (ListItem item in cblProveedores.Items)
                 {

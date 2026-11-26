@@ -159,6 +159,18 @@ namespace ComercioWeb
                     return;
                 }
 
+                foreach (DetalleVenta linea in Lineas)
+                {
+                    Producto actual = obtenerProducto(linea.Producto.Id);
+                    int disponible = actual != null ? actual.StockActual : 0;
+
+                    if (linea.Cantidad > disponible)
+                    {
+                        mostrarError("Stock insuficiente para " + linea.Producto.Nombre + ". Disponible: " + disponible + ".");
+                        return;
+                    }
+                }
+
                 Venta venta = new Venta();
                 venta.Cliente.Id = int.Parse(ddlCliente.SelectedValue);
                 venta.Usuario.Id = ((Usuario)Session["usuario"]).Id;

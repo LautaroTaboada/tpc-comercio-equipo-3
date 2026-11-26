@@ -31,9 +31,25 @@ namespace ComercioWeb
                 ProductoNegocio negocio = new ProductoNegocio();
                 Session["listaProductos"] = negocio.listar();
             }
-            List<Producto> lista = (List<Producto>)Session["listaProductos"];
-            dgvProductos.DataSource = lista.FindAll(x => x.Activo);
+            List<Producto> lista = ((List<Producto>)Session["listaProductos"]).FindAll(x => x.Activo);
+
+            string filtro = txtFiltro.Text.Trim().ToUpper();
+            if (filtro != "")
+            {
+                lista = lista.FindAll(x =>
+                    x.Nombre.ToUpper().Contains(filtro) ||
+                    x.Marca.Nombre.ToUpper().Contains(filtro) ||
+                    x.Categoria.Nombre.ToUpper().Contains(filtro));
+            }
+
+            dgvProductos.DataSource = lista;
             dgvProductos.DataBind();
+        }
+
+        protected void txtFiltro_TextChanged(object sender, EventArgs e)
+        {
+            dgvProductos.PageIndex = 0;
+            cargarGrilla();
         }
 
         protected void dgvProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)

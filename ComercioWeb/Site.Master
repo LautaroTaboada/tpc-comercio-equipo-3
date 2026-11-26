@@ -65,8 +65,8 @@
 
                         <li class="nav-item">
                             <asp:LinkButton ID="btnCerrarSesion" runat="server"
-                                CssClass="nav-link" OnClick="btnCerrarSesion_Click">
-                                Cerrar sesión
+                                CssClass="nav-link" OnClick="btnCerrarSesion_Click"
+                                OnClientClick="return confirm('¿Estás seguro que querés cerrar sesión?');"> Cerrar sesión
                             </asp:LinkButton>
                         </li>
 

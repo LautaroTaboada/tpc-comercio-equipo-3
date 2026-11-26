@@ -1,10 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Productos.aspx.cs" Inherits="ComercioWeb.Productos" %>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>Productos</h2>
         <a href="ProductosInactivos.aspx" class="btn btn-outline-secondary">Ver inactivos</a>
     </div>
-
+    <div class="mb-3">
+        <label class="form-label">Filtrar por nombre, marca o categoría</label>
+        <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control" AutoPostBack="true" OnTextChanged="txtFiltro_TextChanged" />
+    </div>
     <asp:GridView ID="dgvProductos" runat="server"
         CssClass="table table-striped"
         DataKeyNames="Id"

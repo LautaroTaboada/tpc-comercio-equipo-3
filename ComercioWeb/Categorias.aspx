@@ -27,11 +27,6 @@
         <asp:BoundField
             HeaderText="Nombre"
             DataField="Nombre" />
-
-        <asp:CheckBoxField
-            HeaderText="Activo"
-            DataField="Activo" />
-
         <asp:TemplateField HeaderText="Acción" HeaderStyle-CssClass="text-end" ItemStyle-CssClass="text-end text-nowrap">
             <ItemTemplate>
                 <asp:LinkButton runat="server" CommandName="Select" Text="✍" CssClass="btn btn-sm btn-outline-secondary" />
