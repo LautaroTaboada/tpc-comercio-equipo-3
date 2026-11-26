@@ -18,22 +18,40 @@ namespace boostrabdesdecero
         protected void btnContinuar_Click(object sender, EventArgs e)
         {
             string usuario = txtUsuario.Text.Trim();
+            string email = txtEmail.Text.Trim();
 
-            if (usuario == "")
+            if (usuario == "" || email == "")
             {
-                Response.Write("<script>alert('Ingresá tu nombre de usuario.');</script>");
+                Response.Write("<script>alert('Completá todos los campos.');</script>");
                 return;
             }
 
             UsuarioNegocio negocio = new UsuarioNegocio();
 
-            if (negocio.existeUsuario(usuario))
+            bool coincide = negocio.verificarUsuarioEmail(usuario, email);
+
+            if (coincide)
             {
-                Response.Write("<script>alert('Usuario encontrado.');</script>");
+                try
+                {
+                    EmailService servicio = new EmailService();
+
+                    servicio.enviarEmail(
+                        email,
+                        "Prueba ComercioWeb",
+                        "El servicio de correo funciona correctamente."
+                    );
+
+                    Response.Write("<script>alert('Correo enviado correctamente.');</script>");
+                }
+                catch (Exception)
+                {
+                    Response.Write("<script>alert('No se pudo enviar el correo. Revisá la configuración.');</script>");
+                }
             }
             else
             {
-                Response.Write("<script>alert('No se encontró el usuario.');</script>");
+                Response.Write("<script>alert('El usuario y el correo no coinciden.');</script>");
             }
         }
     }

@@ -23,13 +23,14 @@ namespace boostrabdesdecero
             usuario.Nombre = txtNombre.Text.Trim();
             usuario.Apellido = txtApellido.Text.Trim();
             usuario.NombreUsuario = txtUsuario.Text.Trim();
+            usuario.Email = txtEmail.Text.Trim();
             usuario.Password = txtPassword.Text;
 
             string repetirPassword = txtRepetirPassword.Text;
 
             if (usuario.Nombre == "" || usuario.Apellido == "" ||
-                usuario.NombreUsuario == "" || usuario.Password == "" ||
-                repetirPassword == "")
+            usuario.NombreUsuario == "" || usuario.Email == "" ||
+            usuario.Password == "" || repetirPassword == "")
             {
                 Response.Write("<script>alert('Todos los campos son obligatorios.');</script>");
                 return;
