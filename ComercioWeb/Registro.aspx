@@ -24,6 +24,11 @@
                 <label class="form-label">Nombre de usuario</label>
                 <asp:TextBox runat="server" CssClass="form-control" ID="txtUsuario" />
             </div>
+            <div class="mb-3">
+    <label class="form-label">Correo electrónico</label>
+    <asp:TextBox runat="server" CssClass="form-control"
+        ID="txtEmail" TextMode="Email" />
+</div>
 
             <div class="mb-3">
                 <label class="form-label">Contraseña</label>

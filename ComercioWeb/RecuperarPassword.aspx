@@ -10,12 +10,17 @@
 
             <h2 class="mb-4">Recuperar contraseña</h2>
 
-            <p>Ingresá tu nombre de usuario para continuar.</p>
+            <p>Ingresá tu nombre de usuario y el correo electronico asociado a tu cuenta.</p>
 
             <div class="mb-3">
                 <label class="form-label">Nombre de usuario</label>
                 <asp:TextBox runat="server" CssClass="form-control" ID="txtUsuario" />
             </div>
+            <div class="mb-3">
+           <label class="form-label">Correo electrónico</label>
+           <asp:TextBox runat="server" CssClass="form-control"
+           ID="txtEmail" TextMode="Email" />
+           </div>
 
             <asp:Button
                 Text="Continuar"

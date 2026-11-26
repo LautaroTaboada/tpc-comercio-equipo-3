@@ -51,12 +51,13 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("INSERT INTO Usuario (nombreUsuario, password, nombre, apellido, activo, idPerfil) VALUES (@nombreUsuario, @password, @nombre, @apellido, 1, 2)");
+                datos.setearConsulta("INSERT INTO Usuario (nombreUsuario, password, nombre, apellido, email, activo, idPerfil) VALUES (@nombreUsuario, @password, @nombre, @apellido, @email, 1, 2)");
 
                 datos.setearParametro("@nombreUsuario", usuario.NombreUsuario);
                 datos.setearParametro("@password", usuario.Password);
                 datos.setearParametro("@nombre", usuario.Nombre);
                 datos.setearParametro("@apellido", usuario.Apellido);
+                datos.setearParametro("@email", usuario.Email);
 
                 datos.ejecutarAccion();
             }
@@ -83,6 +84,28 @@ namespace negocio
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public bool verificarUsuarioEmail(string nombreUsuario, string email)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) FROM Usuario WHERE nombreUsuario = @nombreUsuario AND email = @email AND activo = 1");
+
+                datos.setearParametro("@nombreUsuario", nombreUsuario);
+                datos.setearParametro("@email", email);
+
+                return datos.ejecutarAccionScalar() > 0;
+            }
+            catch (Exception)
+            {
+                throw;
             }
             finally
             {
