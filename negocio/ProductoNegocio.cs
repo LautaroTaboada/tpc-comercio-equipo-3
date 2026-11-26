@@ -52,23 +52,21 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-    
 
-
-     public void agregar(Producto nuevo)
+        public int agregar(Producto nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.setearConsulta("Insert into Producto (nombre, descripcion, stockMinimo, porcentajeGanancia, idMarca, idCategoria) values (@nombre, @descripcion, @stockMinimo, @ganancia, @idMarca, @idCategoria)");
+                datos.setearConsulta("Insert into Producto (nombre, descripcion, stockMinimo, porcentajeGanancia, idMarca, idCategoria) values (@nombre, @descripcion, @stockMinimo, @ganancia, @idMarca, @idCategoria); Select SCOPE_IDENTITY()");
                 datos.setearParametro("@nombre", nuevo.Nombre);
                 datos.setearParametro("@descripcion", nuevo.Descripcion);
                 datos.setearParametro("@stockMinimo", nuevo.StockMinimo);
                 datos.setearParametro("@ganancia", nuevo.PorcentajeGanancia);
                 datos.setearParametro("@idMarca", nuevo.Marca.Id);
                 datos.setearParametro("@idCategoria", nuevo.Categoria.Id);
-                datos.ejecutarAccion();
+                return datos.ejecutarAccionScalar();
             }
             catch (Exception ex)
             {
@@ -127,5 +125,71 @@ namespace negocio
             }
         }
 
+        public List<int> listarIdsProveedores(int idProducto)
+        {
+            List<int> lista = new List<int>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Select idProveedor From ProductoProveedor Where idProducto = @id");
+                datos.setearParametro("@id", idProducto);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                    lista.Add((int)datos.Lector["idProveedor"]);
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void guardarProveedores(int idProducto, List<int> idsProveedores)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("Delete From ProductoProveedor Where idProducto = @id");
+                datos.setearParametro("@id", idProducto);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+            foreach (int idProveedor in idsProveedores)
+            {
+                AccesoDatos aux = new AccesoDatos();
+                try
+                {
+                    aux.setearConsulta("Insert Into ProductoProveedor (idProducto, idProveedor) Values (@idProducto, @idProveedor)");
+                    aux.setearParametro("@idProducto", idProducto);
+                    aux.setearParametro("@idProveedor", idProveedor);
+                    aux.ejecutarAccion();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    aux.cerrarConexion();
+                }
+            }
         }
     }
+}

@@ -49,6 +49,11 @@
 
         <div class="col-md-6">
 
+            <div class="mb-3">
+                <label class="form-label">Proveedores (uno o más)</label>
+                <asp:CheckBoxList runat="server" ID="cblProveedores" CssClass="form-check" />
+            </div>
+
             <div class="alert alert-info">
                 <strong>Precio de venta (calculado):</strong>
                 último precio de compra + % de ganancia. No se carga a mano.
@@ -59,6 +64,10 @@
             </div>
 
         </div>
+    </div>
+
+    <div class="mb-3">
+        <asp:Label runat="server" ID="lblError" CssClass="text-danger" Visible="false" />
     </div>
 
     <div class="mb-3">

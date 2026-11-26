@@ -12,8 +12,7 @@ namespace ComercioWeb
 {
     public partial class FormularioProducto : System.Web.UI.Page
     {
-
-             protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             txtId.Enabled = false;
 
@@ -33,6 +32,12 @@ namespace ComercioWeb
                     ddlCategoria.DataValueField = "Id";
                     ddlCategoria.DataBind();
 
+                    ProveedorNegocio proveedorNegocio = new ProveedorNegocio();
+                    cblProveedores.DataSource = proveedorNegocio.listar();
+                    cblProveedores.DataTextField = "RazonSocial";
+                    cblProveedores.DataValueField = "Id";
+                    cblProveedores.DataBind();
+
                     Session["ProductoSeleccionado"] = null;
                     string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
 
@@ -49,6 +54,11 @@ namespace ComercioWeb
                         txtGanancia.Text = seleccionado.PorcentajeGanancia.ToString(CultureInfo.InvariantCulture);
                         ddlMarca.SelectedValue = seleccionado.Marca.Id.ToString();
                         ddlCategoria.SelectedValue = seleccionado.Categoria.Id.ToString();
+
+                        // se tildan los proveedores que el producto ya tiene
+                        List<int> idsProveedores = negocio.listarIdsProveedores(seleccionado.Id);
+                        foreach (ListItem item in cblProveedores.Items)
+                            item.Selected = idsProveedores.Contains(int.Parse(item.Value));
 
                         if (!seleccionado.Activo)
                             btnInactivar.Text = "Reactivar";
@@ -70,6 +80,20 @@ namespace ComercioWeb
         {
             try
             {
+                List<int> idsProveedores = new List<int>();
+                foreach (ListItem item in cblProveedores.Items)
+                {
+                    if (item.Selected)
+                        idsProveedores.Add(int.Parse(item.Value));
+                }
+
+                if (idsProveedores.Count == 0)
+                {
+                    lblError.Text = "Elegí al menos un proveedor.";
+                    lblError.Visible = true;
+                    return;
+                }
+
                 Producto producto = new Producto();
                 producto.Nombre = txtNombre.Text;
                 producto.Descripcion = txtDescripcion.Text;
@@ -79,14 +103,18 @@ namespace ComercioWeb
                 producto.Categoria.Id = int.Parse(ddlCategoria.SelectedValue);
 
                 ProductoNegocio negocio = new ProductoNegocio();
+                int idProducto;
 
                 if (Request.QueryString["id"] != null)
                 {
                     producto.Id = int.Parse(txtId.Text);
                     negocio.modificar(producto);
+                    idProducto = producto.Id;
                 }
                 else
-                    negocio.agregar(producto);
+                    idProducto = negocio.agregar(producto);
+
+                negocio.guardarProveedores(idProducto, idsProveedores);
 
                 Session["listaProductos"] = null;
                 Response.Redirect("Productos.aspx", false);
